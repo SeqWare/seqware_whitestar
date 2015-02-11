@@ -29,13 +29,17 @@ There are two ways of getting the imag:
 
         chmod a+w datastore
 
-3. Run container and login with the following (while persisting workflow run directories to datastore)
+3. Run container and login with the following (while persisting workflow run directories to datastore). 
  
         docker run --rm -h master -t -v `pwd`/datastore:/datastore  -i seqware_1.1.0-alpha.6
 
-4. Run the HelloWorld (sample) workflow with 
+4. You should now be inside the running container. Run the HelloWorld (sample) workflow with 
 
         seqware bundle launch --dir ~/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.6/ --no-metadata
+        
+5. Exit the container
+
+        exit
         
 ## Saving the image
 
