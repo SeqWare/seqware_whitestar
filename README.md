@@ -1,13 +1,8 @@
-This is the base Dockerfile for seqware whitestar. 
-
-## Prerequisites
-
-Install the AWS CLI. Refer to the following guides and remember to setup your AWS credentials. 
-
-* https://aws.amazon.com/cli/ 
-* http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html 
-
 ## Getting the image
+
+There are two ways of getting the imag:
+* as a developer, you can build the image using the docker file
+* as a user, download the image from S3
 
 ### Building the image
 
@@ -24,15 +19,21 @@ Install the AWS CLI. Refer to the following guides and remember to setup your AW
 
 ## Running the Container
 
-1. Set permissions on datastore which will hold results of workflows after they run
+1. Create a working directory 
+
+        mkdir ~/docker_working_dir
+        cd ~/docker_working_dir 
+        mkdir datastore
+
+2. Set permissions on datastore which will hold results of workflows after they run
 
         chmod a+w datastore
 
-2. Run container and login with the following (while persisting workflow run directories to datastore)
+3. Run container and login with the following (while persisting workflow run directories to datastore)
  
         docker run --rm -h master -t -v `pwd`/datastore:/datastore  -i seqware_1.1.0-alpha.6
 
-3. Run the HelloWorld (sample) workflow with 
+4. Run the HelloWorld (sample) workflow with 
 
         seqware bundle launch --dir ~/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.6/ --no-metadata
         
