@@ -1,6 +1,6 @@
 ## Getting the image
 
-There are two ways of getting the imag:
+There are two ways of getting the image:
 * as a developer, you can build the image using the docker file
 * as a user, download the image from S3
 
