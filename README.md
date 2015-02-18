@@ -2,20 +2,21 @@
 
 There are two ways of getting the image:
 * as a developer, you can build the image using the docker file
-* as a user, download the image from S3
+* as a user, download the image from Docker Hub
+
+Note that this image is an automated build on Docker Hub. 
 
 ### Building the image
 
 1. Assuming docker is installed properly, build image with 
 
-        docker build  -t seqware_1.1.0-alpha.6 .
+        docker build  -t seqware/seqware_whitestar . 
 
 ### Downloading and restoring the image
 
-1. Rather than building the image, you can also download and restore it from S3 
+1. Rather than building the image, you can also download and restore it from Docker Hub
 
-        aws s3 cp s3://oicr.docker.images/seqware_1.1.0-alpha.6.tar .
-        docker load -i seqware_1.1.0-alpha.6.tar
+        docker pull seqware/seqware_whitestar 
 
 ## Running the Container
 
@@ -31,7 +32,7 @@ There are two ways of getting the image:
 
 3. Run container and login with the following (while persisting workflow run directories to datastore). 
  
-        docker run --rm -h master -t -v `pwd`/datastore:/datastore  -i seqware_1.1.0-alpha.6
+        docker run --rm -h master -t -v `pwd`/datastore:/datastore  -i seqware/seqware_whitestar
 
 4. You should now be inside the running container. Run the HelloWorld (sample) workflow with 
 
@@ -40,14 +41,3 @@ There are two ways of getting the image:
 5. Exit the container
 
         exit
-        
-## Saving the image
-
-1. Exit the container and save the image
-
-        exit
-        docker save -o seqware_1.1.0-alpha.6.tar seqware_1.1.0-alpha.6
-
-2. Upload the image to S3 (given proper credentials)
-
-        aws s3 cp seqware_1.1.0-alpha.6.tar s3://oicr.docker.images
