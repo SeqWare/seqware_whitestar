@@ -1,24 +1,4 @@
-## Getting the image
-
-There are two ways of getting the image:
-* as a developer, you can build the image using the docker file
-* as a user, download the image from Docker Hub
-
-Note that this image is an automated build on Docker Hub. 
-
-### Building the image
-
-1. Assuming docker is installed properly, build image with 
-
-        docker build  -t seqware/seqware_whitestar . 
-
-### Downloading and restoring the image
-
-1. Rather than building the image, you can also download and restore it from Docker Hub
-
-        docker pull seqware/seqware_whitestar 
-
-## Running the Container
+## Users - running the container
 
 1. Create a working directory 
 
@@ -41,3 +21,9 @@ Note that this image is an automated build on Docker Hub.
 5. Exit the container
 
         exit
+
+## Developers - building the image locally
+
+1. Assuming docker is installed properly, build image with 
+
+        docker build  -t seqware/seqware_whitestar . 
