@@ -1,32 +1,27 @@
 ## Users - running the container
 
-1. Create a working directory 
+1. Set permissions on datastore which will hold results of workflows after they run
 
-        mkdir ~/docker_working_dir
-        cd ~/docker_working_dir 
-        mkdir datastore
+        mkdir workflows && mkdir datastore
+        chmod a+wrx workflows && chmod a+wrx datastore
 
-2. Set permissions on datastore which will hold results of workflows after they run
-
-        chmod a+w datastore
-
-3. Run container and login with the following (while persisting workflow run directories to datastore). 
+2. Run container and login with the following (while persisting workflow run directories to datastore). 
  
         docker run --rm -h master -t -v `pwd`/datastore:/datastore  -i seqware/seqware_whitestar
 
-4. You should now be inside the running container. Run the HelloWorld (sample) workflow with 
+3. You should now be inside the running container. Run the HelloWorld (sample) workflow with 
 
         seqware bundle launch --dir ~/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.6/ --no-metadata
         
-5. Exit the container
+4. Exit the container
 
         exit
 
-6. Note that you can also run commands or workflows programmatically rather than interactively.
+5. Note that you can also run commands or workflows programmatically rather than interactively.
 
         docker run --rm -h master -t -v `pwd`/datastore:/mnt/datastore -i seqware/seqware_whitestar seqware bundle launch --dir /home/seqware/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.6/ --no-metadata
 
-7. Note that the Docker client is installed in the container so you can connect the client with the host's Docker daemon in order to run workflows that use Docker calls
+6. Note that the Docker client is installed in the container so you can connect the client with the host's Docker daemon in order to run workflows that use Docker calls
 
         docker run -h master --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock seqware/seqware_whitestar
         docker run -t -i ubuntu /bin/bash
