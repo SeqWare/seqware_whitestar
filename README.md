@@ -22,6 +22,15 @@
 
         exit
 
+6. Note that you can also run commands or workflows programmatically rather than interactively.
+
+        docker run --rm -h master -t -v `pwd`/datastore:/mnt/datastore -i seqware/seqware_whitestar "seqware bundle launch --dir /home/seqware/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.0-alpha.6/ --no-metadata"
+
+7. Note that the Docker client is installed in the container so you can connect the client with the host's Docker daemon in order to run workflows that use Docker calls
+
+        docker run -h master --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock seqware/seqware_whitestar
+        docker run -t -i ubuntu /bin/bash
+
 ## Developers - building the image locally
 
 1. Assuming docker is installed properly, build image with 

@@ -4,7 +4,7 @@
 #
 # Setup SeqWare with WhiteStar (no sge, no oozie, no metadata)
 # Volume mount \datastore to persist the contents of your workflows
-# ex:  sudo docker run -d -P --name web -v datastore:/datastore \bin\bash 
+# ex: docker run --privileged  -h master --rm -t -i -v `pwd`/datastore:/datastore -v `pwd`/workflows/Workflow_Bundle_dockerHelloWorld_1.0-SNAPSHOT_SeqWare_1.1.0-rc.0:/workflow  seqware/seqware_whitestar
 
 FROM ubuntu:12.04
 MAINTAINER Denis Yuen <denis.yuen@oicr.on.ca>
@@ -37,3 +37,19 @@ ADD inventory /etc/ansible/hosts
 RUN ansible-playbook mini-seqware-install.yml -c local --extra-vars "seqware_version=1.1.0-alpha.6"
 ENV PATH /home/seqware/bin:/tmp/ansible/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # at this point, seqware has been fully setup
+USER root
+
+# setup docker in docker functionality assuming socket binding, inspired by https://github.com/jpetazzo/dind and https://github.com/docker/docker/issues/7285
+# example command: docker run --privileged  -h master --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock seqware/seqware_whitestar
+RUN apt-get update -qq && apt-get install -qqy \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    lxc \
+    iptables
+# Install Docker from Docker Inc. repositories.
+RUN curl -sSL https://get.docker.com/ | sh
+# Add non-root access to docker
+RUN sudo gpasswd -a seqware docker
+USER seqware
+WORKDIR /home/seqware
