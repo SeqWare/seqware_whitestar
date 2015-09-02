@@ -1,9 +1,13 @@
 ## Users - running the container
 
+These steps take place in a temporary directory that you create for playing around with this container. 
+
 1. Set permissions on datastore which will hold results of workflows after they run
 
         mkdir workflows && mkdir datastore
         chmod a+wrx workflows && chmod a+wrx datastore
+        
+The workflows directory can be used later to store additional workflows that you wish to run. Datastore will contain the results of your workflow. This tutorial will use the HelloWorld workflow which is pre-built into the container and does not need to be installed in /datastore .
 
 2. Run container and login with the following (while persisting workflow run directories to datastore). 
  
