@@ -1,3 +1,5 @@
+[![](https://badge.imagelayers.io/seqware/seqware_whitestar:latest.svg)](https://imagelayers.io/?images=seqware/seqware_full:latest 'Get your own badge on imagelayers.io')
+
 ## Users - running the container
 
 These steps take place in a temporary directory that you create for playing around with this container. 
