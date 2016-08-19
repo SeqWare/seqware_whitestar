@@ -1,4 +1,5 @@
 [![](https://badge.imagelayers.io/seqware/seqware_whitestar:latest.svg)](https://imagelayers.io/?images=seqware/seqware_full:latest 'Get your own badge on imagelayers.io')
+[![Docker Automated build](https://img.shields.io/docker/automated/seqware/seqware_whitestar.svg?maxAge=2592000)](https://hub.docker.com/r/seqware/seqware_whitestar/)
 
 ## Users - running the container
 
