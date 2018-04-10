@@ -37,6 +37,31 @@ The workflows directory can be used later to store additional workflows that you
   - seqware/seqware_whitestar:1.1.2 which contains Java 6.
   - seqware/seqware_whitestar:1.1.2-java8 which contains Java 8.
 
+## Users - running your own workflows
+
+1. Set permissions on datastore which will hold results of workflows after they run
+
+        mkdir workflows && mkdir datastore
+        chmod a+wrx workflows && chmod a+wrx datastore
+
+2. Build your workflow and copy the unzipped workflow bundle into the `workflows` directory. Note that symlinks won't work here.
+
+        cp -r /home/me/git/workflow-test/target/Workflow_Bundle_Test_2.0_SeqWare_1.1.0 workflows
+        
+3. Make sure the data you need for your workflow is either in `datastore` or otherwise accessible by the Docker container.
+
+        cp -r /home/me/neat_5x_EX_hg19_chr21.bam datastore
+
+4. Launch your workflow. Use the `--override` command to set required INI parameters; for example, the following command overrides `input_file` and `output_prefix`.
+
+        docker run --rm -h master -t -v `pwd`/datastore:/mnt/datastore -v `pwd`/workflows:/mnt/workflows \
+            -i seqware/seqware_whitestar:1.1.2-java8                                    \ 
+            seqware bundle launch --no-metadata                                         \
+                --dir /mnt/workflows/Workflow_Bundle_Test_2.0_SeqWare_1.1.0             \
+                --override output_prefix="/mnt/datastore/"                              \
+                --override input_file="/mnt/datastore/neat_5x_EX_hg19_chr21.bam"
+
+
 ## Developers - building the image locally
 
 1. Assuming docker is installed properly, build image with
