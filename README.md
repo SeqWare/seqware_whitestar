@@ -18,7 +18,7 @@ The workflows directory can be used later to store additional workflows that you
 
 3. You should now be inside the running container. Run the HelloWorld (sample) workflow with
 
-        seqware bundle launch --dir ~/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.2-java8/ --no-metadata
+        seqware bundle launch --dir ~/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.2/ --no-metadata
 
 4. Exit the container
 
@@ -26,7 +26,7 @@ The workflows directory can be used later to store additional workflows that you
 
 5. Note that you can also run commands or workflows programmatically rather than interactively.
 
-        docker run --rm -h master -t -v `pwd`/datastore:/mnt/datastore -i seqware/seqware_whitestar:1.1.2-java8 seqware bundle launch --dir /home/seqware/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.2-java8/ --no-metadata
+        docker run --rm -h master -t -v `pwd`/datastore:/mnt/datastore -i seqware/seqware_whitestar:1.1.2-java8 seqware bundle launch --dir /home/seqware/provisioned-bundles/Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.2/ --no-metadata
 
 6. Note that the Docker client is installed in the container so you can connect the client with the host's Docker daemon in order to run workflows that use Docker calls
 
