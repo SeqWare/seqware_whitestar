@@ -52,7 +52,9 @@ The workflows directory can be used later to store additional workflows that you
 
         cp -r /home/me/neat_5x_EX_hg19_chr21.bam datastore
 
-4. Launch your workflow. Use the `--override` command to set required INI parameters; for example, the following command overrides `input_file` and `output_prefix`.
+4. Assess your workflow's dependencies. Many SeqWare workflows package all of their dependencies in the workflow and these workflows should work without modification. If, on the other hand, you depend on software or environment variables available on the path, you may want to wrap the `seqware bundle launch` command below in a script that imports those dependencies. Make sure you add the script to a location available in the container, e.g. `workflows` or `datastore`.
+
+5. Launch your workflow. Use the `--override` command to set required INI parameters; for example, the following command overrides `input_file` and `output_prefix`.
 
         docker run --rm -h master -t -v `pwd`/datastore:/mnt/datastore -v `pwd`/workflows:/mnt/workflows \
             -i seqware/seqware_whitestar:1.1.2-java8                                    \ 
